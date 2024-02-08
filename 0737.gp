@@ -3,6 +3,8 @@
 #
 set term x11
 
+# Values from Lower et al. (2024)
+# https://arxiv.org/pdf/2311.06445.pdf, see Table 2
 theta = 139.4*pi/180.0
 inc   = 89.35*pi/180.0
 omega = 5.27*pi/180.0/365.25
@@ -10,7 +12,11 @@ phi0  = 3.47*pi/180.0
 alpha = 61.2*pi/180.0
 
 beta_rad(x) = pi - alpha - acos(cos(theta)*cos(inc) - sin(theta)*sin(inc)*cos(phi0 - (x-59289)*omega))
-other_side(x) = beta_rad(x) + 2*alpha - pi
+# Breton (2008) definition, but with sign typo fixed
+# https://arxiv.org/abs/0907.2623, see chapter 4.
+other_side(x) = beta_rad(x) + 2*alpha - pi 
+# Everett & Weisberg (2001) definition
+# https://iopscience.iop.org/article/10.1086/320652/fulltext/
 
 set title "0737 PSR B Impact Factor(t)"
 set ylabel "Beta (degrees)"
